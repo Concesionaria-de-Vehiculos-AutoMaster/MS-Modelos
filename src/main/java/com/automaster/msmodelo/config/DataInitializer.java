@@ -17,23 +17,16 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         if (modeloRepository.count() == 0) {
-            Modelo m1 = new Modelo();
-            m1.setMarca("Toyota");
-            m1.setNombreModelo("Corolla");
-            m1.setMotorizacion("1.8 Híbrido");
-            m1.setColor("Blanco Perla");
-            m1.setTipoCombustible("Híbrido");
-            modeloRepository.save(m1);
+            log.info("Creando marca base para pruebas...");
+            Modelo Toyota = new Modelo();
+            Toyota.setMarca("Toyota");
+            Toyota.setNombreModelo("Yaris");
+            Toyota.setMotorizacion("1.5 L");
+            Toyota.setColor("Blanco");
+            Toyota.setTipoCombustible("Gasolina");
 
-            Modelo m2 = new Modelo();
-            m2.setMarca("Ford");
-            m2.setNombreModelo("Ranger");
-            m2.setMotorizacion("2.0 Bi-Turbo");
-            m2.setColor("Rojo Fuego");
-            m2.setTipoCombustible("Diesel");
-            modeloRepository.save(m2);
-
-            log.info("Datos iniciales de MS-Modelos cargados correctamente.");
+            modeloRepository.save(Toyota);
+            log.info("Marca 'Toyota' creada con ID 1.");
         }
     }
 }
