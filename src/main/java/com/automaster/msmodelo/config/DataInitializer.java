@@ -2,10 +2,12 @@ package com.automaster.msmodelo.config;
 
 import com.automaster.msmodelo.model.Modelo;
 import com.automaster.msmodelo.repository.ModeloRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class DataInitializer implements CommandLineRunner {
 
@@ -31,7 +33,7 @@ public class DataInitializer implements CommandLineRunner {
             m2.setTipoCombustible("Diesel");
             modeloRepository.save(m2);
 
-            System.out.println("Datos iniciales de MS-Modelos cargados correctamente.");
+            log.info("Datos iniciales de MS-Modelos cargados correctamente.");
         }
     }
 }
