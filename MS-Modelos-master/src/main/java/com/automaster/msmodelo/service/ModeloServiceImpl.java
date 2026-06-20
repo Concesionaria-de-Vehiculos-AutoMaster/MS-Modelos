@@ -6,6 +6,7 @@ import com.automaster.msmodelo.model.Modelo;
 import com.automaster.msmodelo.repository.ModeloRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
@@ -62,4 +63,19 @@ public class ModeloServiceImpl implements ModeloService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Modelo no encontrado"));
         return convertirAResponseDTO(modelo);
     }
+    // --- MÉTODO PARA ELIMINAR MODELO ---
+    public void eliminarModelo(Long id) {
+        log.info("Iniciando proceso para eliminar modelo con ID: {}", id);
+
+        // Validamos si existe antes de intentar borrarlo
+        if (!modeloRepository.existsById(id)) {
+            log.error("Error al eliminar: No se encontró modelo con ID {}", id);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El modelo con el ID indicado no existe.");
+        }
+
+        // Si existe, lo eliminamos
+        modeloRepository.deleteById(id);
+        log.info("Modelo con ID {} eliminado exitosamente", id);
+    }
+
 }

@@ -9,4 +9,5 @@ public interface ModeloService {
     ModeloResponseDTO guardar(ModeloRequestDTO requestDTO);
 
     ModeloResponseDTO buscarPorId(Long idModelo);
+    void eliminarModelo(Long id);
 }
